@@ -11,29 +11,26 @@ const App = () => {
 
   const onFeedbackClick = feedback => {
     switch (feedback) {
-      case "good":
+      case 'good':
         setGood(prevState => prevState + 1);
         break;
 
-      case "neutral":
+      case 'neutral':
         setNeutral(prevState => prevState + 1);
         break;
-      
-      case "bad":
+
+      case 'bad':
         setBad(prevState => prevState + 1);
         break;
-      
-      default: break
+
+      default:
+        break;
     }
   };
- 
+
   const total = good + neutral + bad;
 
-
-
   const countPositivePercentage = () => {
- 
-
     if (total === 0) {
       return 0;
     }
@@ -41,27 +38,25 @@ const App = () => {
     return Math.round((good * 100) / total);
   };
 
-
-
   return (
     <>
       <Section title="Please leave feedback">
         <FeedbackOptions
-          options={["good","neutral","bad"]}
+          options={['good', 'neutral', 'bad']}
           onFeedbackClick={onFeedbackClick}
         />
       </Section>
       <Section title="Statistics">
         {total !== 0 ? (
-        <Statistics
-          good={good}
-          neutral={neutral}
-          bad={bad}
-          total={total}
-          positivePercentage={countPositivePercentage()}
-        />
+          <Statistics
+            good={good}
+            neutral={neutral}
+            bad={bad}
+            total={total}
+            positivePercentage={countPositivePercentage()}
+          />
         ) : (
-        <Notification message={'There is no feedback!'} />
+          <Notification message={'There is no feedback!'} />
         )}
       </Section>
     </>
